@@ -3,6 +3,8 @@ const server = express();
 
 const db = require("./data/accounts-model.js");
 
+server.use(express.json());
+
 server.get("/", async (req, res) => {
   try {
     const budgets = await db.find();
