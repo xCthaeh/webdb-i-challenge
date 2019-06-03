@@ -35,4 +35,15 @@ server.put("/:id", async (req, res) => {
   }
 });
 
+server.post("/", async (req, res) => {
+  try {
+    const post = await db.add(req.body);
+    res.status(201).json(post);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error occurred while trying to add a post" });
+  }
+});
+
 module.exports = server;
