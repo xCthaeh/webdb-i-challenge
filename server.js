@@ -46,4 +46,17 @@ server.post("/", async (req, res) => {
   }
 });
 
+server.delete("/:id", async (req, res) => {
+  try {
+    const count = db.remove(req.params.id);
+    if (count > 0) {
+      res.status(200).json({ message: "Budget successfully removed" });
+    } else {
+      res.status(404).json({ message: "Budget cannot be found" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Error deleting the budget" });
+  }
+});
+
 module.exports = server;
